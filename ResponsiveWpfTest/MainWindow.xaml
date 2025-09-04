@@ -1,0 +1,107 @@
+﻿<Window x:Class="ResponsiveWpfTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ResponsiveWpfTest.ViewModels"
+        xmlns:Menu="clr-namespace:ResponsiveWpfTest.Utilities"
+        xmlns:local="clr-namespace:ResponsiveWpfTest"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="960" 
+        Width="1280"
+        MinHeight="500"
+        MinWidth="1000"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent" ResizeMode="CanResizeWithGrip" >
+    <Window.DataContext>
+        <vm:MainWindowVM />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Drag-Bar-->
+        <Grid PreviewMouseDown="Window_PreviewMouseDown" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="#272B2F"
+                    CornerRadius="20,0,0,0"/>
+            <Border Background="#212529"
+                    Grid.Column="1"
+                    CornerRadius="0,20,0,0"/>
+        </Grid>
+
+        <!--Window Border-->
+        <Border Background="#212529"
+                CornerRadius="0,0,20,20"
+                Grid.Row="1"/>
+
+        <Grid Grid.Row="1">
+            <!--Base Grid-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Navigation Panel-->
+
+            <Grid HorizontalAlignment="Left"
+                  Grid.Row="1"
+                  Width="250">
+                <Border Background="#272B2F"
+                        CornerRadius="0,0,0,20" />
+                <StackPanel Height="400"
+                            Width="228"
+                            VerticalAlignment="Center">
+                    <!--Home-->
+                    <Menu:Btn Style="{StaticResource Button_Menu}"
+                              Command="{Binding NavigateHomeCommand}"
+                              IsChecked="True">
+                        <Grid>
+                            <Image Source="/Assets/Images/Icons/home_page.png"
+                                   Style="{StaticResource Image_Style}" 
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,20,0"/>
+                            <TextBlock Text="Start"
+                                       Style="{StaticResource Text_Menu}" 
+                                       HorizontalAlignment="Left"
+                                       Margin="20,0,0,0"/>
+
+                        </Grid>
+                    </Menu:Btn>
+
+                    <!--Settings-->
+                    <Menu:Btn Style="{StaticResource Button_Menu}"
+                              Command="{Binding NavigateSettingsCommand}">
+                        <Grid>
+                            <Image Source="/Assets/Images/Icons/img_setting.png"
+                                   Style="{StaticResource Image_Style}" 
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,20,0"/>
+                            <TextBlock Text="Einstellungen"
+                                       Style="{StaticResource Text_Menu}" 
+                                       HorizontalAlignment="Left"
+                                       Margin="20,0,0,0"/>
+
+                        </Grid>
+                    </Menu:Btn>
+                </StackPanel>
+            </Grid>
+
+            
+            <!-- STAGE -->
+            <Grid Grid.Column="1"
+                  Grid.Row="1">
+                <ContentControl x:Name="Pages"
+                                Content="{Binding CurrentView}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

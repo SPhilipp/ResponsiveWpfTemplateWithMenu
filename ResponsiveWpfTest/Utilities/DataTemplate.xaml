@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:ResponsiveWpfTest.ViewModels"
+                    xmlns:view ="clr-namespace:ResponsiveWpfTest.Views">
+
+    <DataTemplate DataType="{x:Type vm:HomeViewVM}">
+        <view:HomeView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:SettingsViewVM}">
+        <view:SettingsView />
+    </DataTemplate>
+
+</ResourceDictionary>
