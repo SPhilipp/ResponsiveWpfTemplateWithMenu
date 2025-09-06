@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using ResponsiveWpfTest.ViewModels;
+using System.Runtime.CompilerServices;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +25,22 @@ namespace ResponsiveWpfTest
 
         private void Window_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            this.DragMove();
+        }
+
+        private void btn_minimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btn_maximize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Maximized == this.WindowState ? WindowState.Normal : WindowState.Maximized;
+        }
+
+        private void btn_close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

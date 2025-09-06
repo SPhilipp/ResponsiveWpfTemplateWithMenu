@@ -26,7 +26,7 @@
                                     Width="4"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
-                                    Background="#FFFFFF"
+                                    Background="{DynamicResource PageTitleColor}"
                                     Visibility="Collapsed"
                                     CornerRadius="2"/>
 
@@ -88,4 +88,71 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="Button_WindowControl" TargetType="Button">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                        Height="30"
+                        Width="30"
+                        CornerRadius="5"
+                        BorderThickness="0">
+                        <Border.Background>
+                            <!-- Jede Instanz bekommt einen eigenen Brush -->
+                            <SolidColorBrush Color="{DynamicResource MainBackgroundColor_Color}"/>
+                        </Border.Background>
+                        <Grid>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!-- MouseEnter -->
+                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="border"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                From="#212529"
+                                                To="#1E140D"
+                                                Duration="0:0:0.3"/>
+                                                <!--
+                                                    Farben aus Colors.xaml
+                                    
+                                                    From = MainBackgroundColor_Color
+                                                    To   = ButtonHoverBackgroundColor_Color
+                                                -->
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <!-- MouseLeave -->
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="border"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                From="#1E140D"
+                                                To="#212529"
+                                                Duration="0:0:0.3"/>
+                                                <!--
+                                                    Farben aus Colors.xaml
+                                    
+                                                    From = ButtonHoverBackgroundColor_Color
+                                                    To   = MainBackgroundColor_Color
+                                                -->
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

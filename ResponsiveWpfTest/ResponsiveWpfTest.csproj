@@ -9,7 +9,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\Fonts\" />
+    <None Remove="Assets\Images\copago-logo_black.png" />
+    <None Remove="Assets\Images\Icons\home_page.png" />
+    <None Remove="Assets\Images\Icons\img_setting.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AW.FontAwesome.WPF" Version="6.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\copago-logo_black.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Icons\home_page.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Icons\img_setting.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--Vordergründe-->
+    <SolidColorBrush x:Key="PageTitleColor" Color="#FFB24600"/>
+    <SolidColorBrush x:Key="MainIconColor" Color="#FFFFFFFF"/>
+    
+    <!--Hintergründe-->
+
+    <Color x:Key="MainBackgroundColor_Color">#212529</Color>
+    <Color x:Key="MenuBackgroundColor_Color">#1E140D</Color>
+    <Color x:Key="ButtonHoverBackgroundColor_Color">#1E140D</Color>
+
+    <SolidColorBrush x:Key="MainBackgroundColor" Color="{StaticResource MainBackgroundColor_Color}"/>
+    <SolidColorBrush x:Key="MenuBackgroundColor" Color="{StaticResource MenuBackgroundColor_Color}"/>
+    <SolidColorBrush x:Key="ButtonHoverBackgroundColor" Color="{StaticResource ButtonHoverBackgroundColor_Color}"/>
+</ResourceDictionary>

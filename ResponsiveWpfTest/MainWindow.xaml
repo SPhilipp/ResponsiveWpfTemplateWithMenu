@@ -6,6 +6,7 @@
         xmlns:vm="clr-namespace:ResponsiveWpfTest.ViewModels"
         xmlns:Menu="clr-namespace:ResponsiveWpfTest.Utilities"
         xmlns:local="clr-namespace:ResponsiveWpfTest"
+        xmlns:fa="http://schemas.aw.fontawesome.wpf"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="960" 
@@ -15,32 +16,82 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Background="Transparent" ResizeMode="CanResizeWithGrip" >
+        Background="Transparent" 
+        ResizeMode="CanResizeWithGrip" >
     <Window.DataContext>
         <vm:MainWindowVM />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="{Binding HeaderHeight, UpdateSourceTrigger=PropertyChanged}"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--Drag-Bar-->
-        <Grid PreviewMouseDown="Window_PreviewMouseDown" >
+        <!--Title-Bar-->
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <Border Background="#272B2F"
-                    CornerRadius="20,0,0,0"/>
+            <!--Left Side above menu-->
+            <Border Background="{DynamicResource MenuBackgroundColor}"
+                    CornerRadius="10,0,0,0"/>
+
+            <!--<Image Source="/Assets/Images/copago-logo_black.png"
+                   Style="{StaticResource Image_TitleBar}" 
+                   HorizontalAlignment="Center"
+                   Margin="0,0,20,0"/>-->
+            
+            <!--Right Side above content-->
             <Border Background="#212529"
+                    PreviewMouseDown="Window_PreviewMouseDown" 
                     Grid.Column="1"
-                    CornerRadius="0,20,0,0"/>
+                    CornerRadius="0,0,0,0"/>
+
+            <Border Background="#212529"
+                    Grid.Column="2"
+                    CornerRadius="0,10,0,0"/>
+            
+            <TextBlock Text="Kunden-Management"
+                       Style="{StaticResource Text_Title}" 
+                       Grid.Column="1"/>
+
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="2"
+                        Background="Transparent"
+                        HorizontalAlignment="Center">
+                <!--MinimizeButton-->
+                <Button x:Name="btn_minimize" 
+                        Style="{StaticResource Button_WindowControl}" 
+                        Click="btn_minimize_Click">
+                    <fa:Icon FaStyle="Solid" FaName="window-minimize"  
+                             Foreground="{DynamicResource MainIconColor}"
+                             Height="20" Width="15"/>
+                </Button>
+                <!--MaximizeButton-->
+                <Button x:Name="btn_maximize" 
+                        Style="{StaticResource Button_WindowControl}" 
+                        Click="btn_maximize_Click">
+                    <fa:Icon FaStyle="Regular" FaName="window-maximize"  
+                             Foreground="{DynamicResource MainIconColor}"
+                             Height="20" Width="15"/>
+                </Button>
+                <!--CloseButton-->
+                <Button x:Name="btn_close" 
+                        Style="{StaticResource Button_WindowControl}" 
+                        Click="btn_close_Click">
+                    <fa:Icon FaStyle="Solid" FaName="xmark"  
+                             Foreground="{DynamicResource MainIconColor}"
+                             Height="20"/>
+                </Button>
+
+            </StackPanel>
         </Grid>
 
         <!--Window Border-->
         <Border Background="#212529"
-                CornerRadius="0,0,20,20"
+                CornerRadius="0,0,10,10"
                 Grid.Row="1"/>
 
         <Grid Grid.Row="1">
@@ -55,8 +106,8 @@
             <Grid HorizontalAlignment="Left"
                   Grid.Row="1"
                   Width="250">
-                <Border Background="#272B2F"
-                        CornerRadius="0,0,0,20" />
+                <Border Background="{DynamicResource MenuBackgroundColor}"
+                        CornerRadius="0,0,0,10" />
                 <StackPanel Height="400"
                             Width="228"
                             VerticalAlignment="Center">
@@ -65,10 +116,11 @@
                               Command="{Binding NavigateHomeCommand}"
                               IsChecked="True">
                         <Grid>
-                            <Image Source="/Assets/Images/Icons/home_page.png"
-                                   Style="{StaticResource Image_Style}" 
-                                   HorizontalAlignment="Right"
-                                   Margin="0,0,20,0"/>
+                            <fa:Icon FaStyle="Solid" FaName="house"  
+                                     HorizontalAlignment="Right"
+                                     Margin="0,0,27,0"
+                                     Foreground="{DynamicResource MainIconColor}"
+                                     Height="18" />
                             <TextBlock Text="Start"
                                        Style="{StaticResource Text_Menu}" 
                                        HorizontalAlignment="Left"
@@ -81,10 +133,11 @@
                     <Menu:Btn Style="{StaticResource Button_Menu}"
                               Command="{Binding NavigateSettingsCommand}">
                         <Grid>
-                            <Image Source="/Assets/Images/Icons/img_setting.png"
-                                   Style="{StaticResource Image_Style}" 
-                                   HorizontalAlignment="Right"
-                                   Margin="0,0,20,0"/>
+                            <fa:Icon FaStyle="Solid" FaName="gear"  
+                                     HorizontalAlignment="Right"
+                                     Margin="0,0,27,0"
+                                     Foreground="{DynamicResource MainIconColor}"
+                                     Height="18" />
                             <TextBlock Text="Einstellungen"
                                        Style="{StaticResource Text_Menu}" 
                                        HorizontalAlignment="Left"
